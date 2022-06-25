@@ -3,9 +3,20 @@ services:
   app_xbox:
     build: ./Config/
     container_name: app
+    networks:
+      appnet:
+        ipv4_address: 172.19.2.1
     volumes:
       - .:/srv
       - ./App:/var/www/html
     ports:
       - 80:80
       - 8000:8000
+    restart: always
+networks:
+  appnet:
+    driver: bridge
+    ipam:
+      driver: default
+      config:
+        - subnet: "172.19.2.0/16"
