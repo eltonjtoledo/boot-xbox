@@ -1,0 +1,19 @@
+{
+    "name": "eltonjtoledo/xbox-crawler",
+    "description": "Just a personal project to get all games",
+    "type": "project",
+    "config": {
+        "vendor-dir": "../vendor"
+    },
+    "autoload": {
+        "psr-4": {
+            "XboxCrawler\\": "modules/"
+        }
+    },
+    "authors": [
+        {
+            "name": "eltonjtoledo"
+        }
+    ],
+    "require": {}
+}
