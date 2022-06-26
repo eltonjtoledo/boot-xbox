@@ -18,8 +18,8 @@ class Config
 {
     private $urlBase = "https://www.xbox.com";
     public static $fullUrl;
-    public static TypeOfStore $typeStore;
-    public static Languages $language;
+    public TypeOfStore $typeStore;
+    public Languages $language;
 
     public function __construct()
     {
@@ -33,8 +33,8 @@ class Config
      */
     public function setConfigUrl(Languages $language, TypeOfStore $typeStore)
     {
-        self::$language = $language;
-        self::$typeStore = $typeStore;
+        $this->language = $language;
+        $this->typeStore = $typeStore;
         self::$fullUrl = $this->urlBase."/".$this->setLanguage($this->language)."/".$this->setTypeOfStore($this->typeStore);
     }
 
@@ -46,7 +46,7 @@ class Config
     {
         $langUrl = null;
 
-        switch (self::$language) {
+        switch ($this->language) {
             case Languages::Portugues:
                 $langUrl = "pt-br";
                 break;
