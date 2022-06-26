@@ -1,11 +1,10 @@
 <?php
+require_once('../vendor/autoload.php');
 
-use XboxCrawler\Config;
-use XboxCrawler\Languages;
-use XboxCrawler\TypeOfStore;
+use XboxCrawler\Commons\Config;
+use XboxCrawler\Commons\Languages;
+use XboxCrawler\Commons\TypeOfStore;
 
-require_once("./vendor/autoload.php");
-
-$conf = new Config(Languages::Portugues, TypeOfStore::GamePass);
-
-var_dump($conf);
+$conf = new Config();
+$conf->setConfigUrl(Languages::Portugues, TypeOfStore::GamePass);
+var_dump(Config::$fullUrl);

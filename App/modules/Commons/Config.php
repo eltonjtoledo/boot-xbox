@@ -1,6 +1,6 @@
 <?php
 
-namespace XboxCrawler;
+namespace XboxCrawler\Commons;
 
 enum Languages
 {
@@ -17,23 +17,36 @@ enum TypeOfStore
 class Config
 {
     private $urlBase = "https://www.xbox.com";
-    public static $urlCatalogy;
+    public static $fullUrl;
+    public static TypeOfStore $typeStore;
+    public static Languages $language;
 
-    public function __construct(public Languages $lang, public TypeOfStore $typeStore)
+    public function __construct()
     {
-        $this->urlCatalogy = "https://www.xbox.com/pt-BR/games/all-games";
+        # Your code here
     }
 
-    public function setUrlCategory(Languages $lang, TypeOfStore $typeStore)
+    /**
+     * @method setConfigUrl configuration to initialize URL 
+     * @param Languages $language 
+     * @param TypeOfStore $typeStore
+     */
+    public function setConfigUrl(Languages $language, TypeOfStore $typeStore)
     {
-        self::$urlCatalogy = $this->urlBase."/".$this->setLanguage($lang)."/".$this->setTypeOfStore($typeStore);
+        self::$language = $language;
+        self::$typeStore = $typeStore;
+        self::$fullUrl = $this->urlBase."/".$this->setLanguage($this->language)."/".$this->setTypeOfStore($this->typeStore);
     }
 
-    private function setLanguage(Languages $lang): string
+    /**
+     * @method setLanguage
+     * @return String language url style
+     */
+    private function setLanguage(): string
     {
         $langUrl = null;
 
-        switch ($lang) {
+        switch (self::$language) {
             case Languages::Portugues:
                 $langUrl = "pt-br";
                 break;

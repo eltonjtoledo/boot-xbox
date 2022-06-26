@@ -1,6 +1,6 @@
 FROM ubuntu:20.04
 ENV DEBIAN_FRONTEND noninteractive
-WORKDIR /srv
+WORKDIR /var/www
 
 # Install dependencias APT
 RUN apt-get update && apt-get install -y apt-utils software-properties-common
@@ -15,8 +15,8 @@ COPY ./localhost.conf /etc/apache2/sites-available/localhost.conf
 RUN apt-get install -y nano
 RUN a2dissite 000-default.conf && a2ensite localhost.conf
 RUN echo 'ServerName 127.0.0.1' >> /etc/apache2/apache2.conf
-RUN ln -s /srv/Config/xbox.ini /etc/php/8.1/apache2/conf.d/xbox.ini
-RUN ln -s /srv/Config/xbox.ini /etc/php/8.1/cli/conf.d/xbox.ini
+RUN ln -s /var/www/Config/xbox.ini /etc/php/8.1/apache2/conf.d/xbox.ini
+RUN ln -s /var/www/Config/xbox.ini /etc/php/8.1/cli/conf.d/xbox.ini
 
 # Isntall Composer
 RUN php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');"

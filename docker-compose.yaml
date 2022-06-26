@@ -7,7 +7,7 @@ services:
       appnet:
         ipv4_address: 172.19.2.1
     volumes:
-      - .:/srv
+      - .:/var/www
       - ./App:/var/www/html
     ports:
       - 80:80
